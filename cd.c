@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: nloutfi <nloutfi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 04:32:05 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/17 19:09:13 by hkhalil          ###   ########.fr       */
+/*   Updated: 2023/02/17 03:47:31 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	update_pwd(t_env **env, char *path)
 		}
 		tmp = tmp->next;
 	}
-	ft_lstadd_back(env, ft_lstadd_new(ft_strdup("PWD"), ft_strdup(path)));
+	ft_lst_add_back(env, ft_lstnew(ft_strdup("PWD"), ft_strdup(path)));
 	free(path);
 }
 
@@ -41,7 +41,7 @@ void	ft_cd(t_execmd *cmd, t_env *env)
 		{
 			write(2, "cd: ", 5);
 			perror(cmd->av[1]);
-			g_var = 1;
+			exit_stat = 1;
 			return ;
 		}
 		update_pwd(&env, getcwd(NULL, 0));
@@ -54,6 +54,6 @@ void	ft_cd(t_execmd *cmd, t_env *env)
 				chdir(env->value);
 			env = env->next;
 		}
-		g_var = 0;
+		exit_stat = 0;
 	}
 }

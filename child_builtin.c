@@ -29,7 +29,7 @@ int	child_builtin_export(t_execmd *tree3, t_env **env_list)
 	if (!ft_strcmp(tree3->av[0], "export"))
 	{
 		ft_export(tree3, env_list);
-		if (g_var == -2)
+		if (exit_stat == -2)
 			exit(1);
 		exit(0);
 	}
@@ -41,7 +41,7 @@ int	child_builtin_unset(t_execmd *tree3, t_env **env_list)
 	if (!ft_strcmp(tree3->av[0], "unset"))
 	{
 		ft_unset(tree3, env_list);
-		if (g_var == -2)
+		if (exit_stat == -2)
 			exit(1);
 		exit (0);
 	}
@@ -55,7 +55,7 @@ void	child_builtin(t_execmd *tree3, t_env **env_list)
 	if (!ft_strcmp(tree3->av[0], "exit"))
 	{
 		ft_exit(tree3);
-		exit(g_var);
+		exit(exit_stat);
 	}
 	else if (child_builtin_cd(tree3, env_list))
 		;

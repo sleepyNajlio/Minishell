@@ -93,7 +93,7 @@ void	ft_unset(t_execmd *cmd, t_env **env)
 	{
 		if (!valid_name(cmd->av[i]))
 		{
-			g_var = -2;
+			exit_stat = -2;
 			printf("unset: `%s': not a valid identifier\n", cmd->av[i]);
 		}
 		else

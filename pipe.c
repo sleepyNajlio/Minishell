@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: nloutfi <nloutfi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 00:22:59 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/15 21:12:15 by hkhalil          ###   ########.fr       */
+/*   Updated: 2023/02/17 04:09:51 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_wait(int id)
 	{
 		if ((WTERMSIG(mid) == 3 || WTERMSIG(mid) == 2)
 			&& (WTERMSIG(last) != 3 && WTERMSIG(last) != 2))
-		g_var = -1;
+		exit_stat = -1;
 	}
 	exit(WEXITSTATUS(last));
 }
@@ -41,7 +41,7 @@ void	ft_pipe(t_defcmd *tree, int *flag_out, int *flag_in, t_env **env_list)
 
 	tree1 = (t_pipecmd *)tree;
 	create_pipe(p);
-	id = forkk();
+	id = my_fork();
 	if (id == 0)
 	{
 		close(p[0]);
@@ -49,7 +49,7 @@ void	ft_pipe(t_defcmd *tree, int *flag_out, int *flag_in, t_env **env_list)
 		close(p[1]);
 		executor(tree1->left, flag_out, flag_in, env_list);
 	}
-	id = forkk();
+	id = my_fork();
 	if (id == 0)
 	{
 		close(p[1]);

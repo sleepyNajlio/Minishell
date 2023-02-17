@@ -56,7 +56,7 @@ void	errors4(char *name, int flag)
 		write(2, ": Permission denied\n", 21);
 	else
 		write(2, ": No such file or directory\n", 29);
-	g_var = 1;
+	exit_stat = 1;
 }
 
 void	errors(char *name, int flag)

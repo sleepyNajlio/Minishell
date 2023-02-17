@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: nloutfi <nloutfi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 11:34:23 by iakry             #+#    #+#             */
-/*   Updated: 2022/10/17 18:00:56 by hkhalil          ###   ########.fr       */
+/*   Updated: 2023/02/17 22:32:11 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define REDIR 2
 # define EXEC 3
 
-extern int	g_var;
+extern int	exit_stat;
 
 typedef struct s_envvar
 {
@@ -69,8 +69,6 @@ typedef struct s_redcmd
 }	t_redcmd;
 
 
-
-
 t_defcmd	*line_parsing(t_env **env, char *line);
 size_t		ft_strlen(const char *s); // --
 int			find(char *to_find, char **line_s, char *line_e);
@@ -103,27 +101,37 @@ char		*open_heredoc(char *delimiter);
 char		*join_free_s1(char const *s1, char const *s2);
 char		*join_free_s2(char const *s1, char const *s2);
 char		*ft_strdup(const char *str);
-
+void		found_env(char **str, int *i, t_env *env, char *c);
 
 //najlio
+t_env	*ft_lstnew(void *name, void *val);
+void	ft_lst_add_back(t_env **lst, t_env *new);
+int		ft_lstsize(t_env *env);
+t_env	*env_init(char **env);
+int		my_fork(void);
+void	env_free(t_env **env);
+void	mini_child(char *line, t_env **env);
+char	**ft_split(char const *s, char c);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+char	*ft_strjoin(char const *s1, char const *s2);
+int		mini_parent(char *line, t_env **env);
+void	p_builtin_exec(t_defcmd *tree, int *done, t_env **env);
+void	exit_parent(t_defcmd *tree, int *done);
+void	cd_parent(t_defcmd *tree, int *done, t_env **env);
+void	unset_parent(t_defcmd *tree, int *done, t_env **env);
+void	export_parent(t_defcmd *tree, int *done, t_env **env);
+void	master_free(t_defcmd *tree);
 
 
 
 // libft utils
-void		*ft_memcpy(void *dest, const void *src, size_t n);
-char		**ft_split(char const *s, char c);
-char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strjoin2(char const *s1, char *s2);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
 int			ft_strcmp(const char *s1, const char *s2);
 int			ft_atoi(const char *nptr);
 int			ft_tolower(int c);
-void		ft_lstadd_back(t_env **head, t_env *new);
-t_env	*ft_lstadd_new(void *n, void *v);
-int			ft_lstsize(t_env *lst);
 
 //minishell utils
-int			forkk(void);
 void		errors(char *name, int flag);
 
 
@@ -135,7 +143,7 @@ char		**envpath(t_env *env);
 
 // builtins
 
-int			parent_builtin(char *line, t_env **env_list);
+int			mini_parent(char *line, t_env **env_list);
 void		child_builtin(t_execmd *tree3, t_env **env_list);
 int			if_exist_add(t_env **env, char **s, int flag);
 t_env	*init_env(char **env);
@@ -171,16 +179,13 @@ void		ft_redir(t_defcmd *tree, int *flag_out,
 void		ft_execmd(t_defcmd *tree, t_env **env_list);
 
 //signals
-void		handler(int sig);
 
 //readline
 void		rl_replace_line(const char *text, int clear_undo);
 
 //free
 void		clean(t_defcmd *tree);
-void		free_env(t_env **env);
-//read
-char		*ft_read(t_env **env_list);
+
 //errors
 void		errors(char *name, int flag);
 #endif

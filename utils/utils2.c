@@ -14,14 +14,14 @@ int	valid_name(char *s)
 	i = 0;
 	if (!ft_isalpha(s[i]) && s[i] != '_')
 	{
-		g_var = -2;
+		exit_stat = -2;
 		return (0);
 	}
 	while (s[i])
 	{
 		if (!ft_isalpha(s[i]) && !ft_isdigit(s[i]) && s[i] != '_')
 		{
-			g_var = -2;
+			exit_stat = -2;
 			return (0);
 		}
 		i++;

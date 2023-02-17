@@ -39,10 +39,10 @@ void	ft_exit(t_execmd *node)
 		if (k > 2)
 		{
 			write(2, "exit: too many arguments\n", 26);
-			g_var = 1;
+			exit_stat = 1;
 			return ;
 		}
 		exit(ft_atoi(node->av[1]));
 	}
-	exit(g_var);
+	exit(exit_stat);
 }

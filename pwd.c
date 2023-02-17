@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: nloutfi <nloutfi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 04:42:58 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/15 04:46:13 by hkhalil          ###   ########.fr       */
+/*   Updated: 2023/02/17 23:49:39 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ int	ft_check_for_pwd(char *s)
 
 void	ft_pwd(void)
 {
-	char	cwd[100];
+	// char	cwd[100];
 
-	if (getcwd(cwd, 100))
-		printf("%s\n", cwd);
-	exit(0);
+		printf("Here\n");
+		// if(getcwd(cwd, 100))
+		// 	printf("%s\n", cwd);
+	// exit(0);
 }
+
