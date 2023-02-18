@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 05:24:09 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/15 21:12:15 by hkhalil          ###   ########.fr       */
+/*   Updated: 2023/02/18 22:46:21 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void	ft_unset(t_execmd *cmd, t_env **env)
 	{
 		if (!valid_name(cmd->av[i]))
 		{
-			exit_stat = -2;
+			exit_stat = -6;
 			printf("unset: `%s': not a valid identifier\n", cmd->av[i]);
 		}
 		else

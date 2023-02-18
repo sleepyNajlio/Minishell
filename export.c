@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nloutfi <nloutfi@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 07:14:38 by hkhalil           #+#    #+#             */
-/*   Updated: 2023/02/17 03:47:31 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/18 22:46:21 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ void	global_env(t_env **env, char *s, t_env *addr)
 		;
 	else
 	{
-		if (v && v[0] && valid_name(v[0]))
+		if (v && v[0] && name_check(v[0]))
 			ft_lst_add_back(env,
 				ft_lstnew(ft_strdup(v[0]), ft_strdup(v[1])));
 		else
 		{
-			exit_stat = -2;
+			exit_stat = -6;
 			printf("export: `%s': not a valid identifier\n", s);
 		}
 	}
@@ -63,12 +63,12 @@ void	local_env(t_env **env, char *s, t_env	*addr)
 {
 	if (if_exist_add(&addr, &s, 0))
 		;
-	else if (valid_name(s))
+	else if (name_check(s))
 		ft_lst_add_back(env,
 			ft_lstnew(ft_strdup(s), NULL));
 	else
 	{
-		exit_stat = -2;
+		exit_stat = -6;
 		printf("export: `%s': not a valid identifier\n", s);
 	}
 }

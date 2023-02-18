@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child_builtin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nloutfi <nloutfi@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 13:02:29 by iakry             #+#    #+#             */
-/*   Updated: 2023/02/18 19:01:16 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/18 23:24:35 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	child_builtin_export(t_execmd *tree3, t_env **env_list)
 	if (!ft_strcmp(tree3->av[0], "export"))
 	{
 		ft_export(tree3, env_list);
-		if (exit_stat == -2)
+		if (exit_stat == -6)
 			exit(1);
 		exit(0);
 	}
@@ -40,8 +40,8 @@ int	child_builtin_unset(t_execmd *tree3, t_env **env_list)
 {
 	if (!ft_strcmp(tree3->av[0], "unset"))
 	{
-		ft_unset(tree3, env_list);
-		if (exit_stat == -2)
+		my_unset(tree3, env_list);
+		if (exit_stat == -6)
 			exit(1);
 		exit (0);
 	}

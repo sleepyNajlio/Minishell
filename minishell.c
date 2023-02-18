@@ -6,7 +6,7 @@ void	ctrls(int s)
 {
 	(void)s;
 	exit_stat = 1;
-	rl_replace_line("", 0);
+	//rl_replace_line("", 0);
 	rl_on_new_line();
 	write(1, "\n", 1);
 	rl_redisplay();

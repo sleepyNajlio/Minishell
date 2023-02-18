@@ -31,8 +31,8 @@ void	unset_parent(t_defcmd *tree, int *done, t_env **env)
 	command = (t_execmd *)tree;
 	if (ft_strcmp(command->av[0], "unset") == 0)
 	{
-		ft_unset(command, env);
-		if (exit_stat == -2)
+		my_unset(command, env);
+		if (exit_stat == -6)
 			exit_stat = 1;
 		else
 			exit_stat = 0;
@@ -48,7 +48,7 @@ void	export_parent(t_defcmd *tree, int *done, t_env **env)
 	if (ft_strcmp(cmd->av[0], "export") == 0 && cmd->av[1])
 	{
 		ft_export(cmd, env);
-		if (exit_stat == -2)
+		if (exit_stat == -6)
 			exit_stat = 1;
 		else
 			exit_stat = 0;

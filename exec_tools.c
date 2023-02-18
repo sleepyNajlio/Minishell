@@ -38,6 +38,13 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (0);
 }
 
+int	ft_tolower(int c)
+{
+	if (c >= 'A' && c <= 'Z')
+		return (c + 32);
+	return (c);
+}
+
 int	ft_isspace(int c)
 {
 	if (c == '\f' || c == '\n' || c == '\r'
