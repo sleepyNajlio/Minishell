@@ -41,10 +41,12 @@ void	open_files(t_defcmd *tree, t_env **my_env)
 	fd = open(tree_r->file, tree_r->mode, 0666);
 	if (fd < 0)
 		return ;
+	
 	close(fd);
 	if (tree_r->cmd->type == REDIR)
 		open_files(tree_r->cmd, my_env);
 }
+
 
 void	p_builtin_exec(t_defcmd *tree, int *done, t_env **env)
 {
@@ -69,6 +71,8 @@ void	p_builtin_exec(t_defcmd *tree, int *done, t_env **env)
 				unset_parent(tree_t, done, env);
 			if (*done == 0)
 				export_parent(tree_t, done, env);
+			// if (*done == 0)
+			// 	pwd_parent(tree_t, done);
 		}
 	}
 }

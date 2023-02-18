@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 04:32:05 by hkhalil           #+#    #+#             */
-/*   Updated: 2023/02/17 03:47:31 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/18 02:46:48 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	ft_cd(t_execmd *cmd, t_env *env)
 			exit_stat = 1;
 			return ;
 		}
+		
 		update_pwd(&env, getcwd(NULL, 0));
 	}
 	if (!(cmd->av[1]))

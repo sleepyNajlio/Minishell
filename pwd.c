@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 04:42:58 by hkhalil           #+#    #+#             */
-/*   Updated: 2023/02/17 23:49:39 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/18 04:03:38 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,10 @@ int	ft_check_for_pwd(char *s)
 
 void	ft_pwd(void)
 {
-	// char	cwd[100];
+	char	cwd[100];
 
-		printf("Here\n");
-		// if(getcwd(cwd, 100))
-		// 	printf("%s\n", cwd);
-	// exit(0);
+	if (getcwd(cwd, 100))
+		printf("%s\n", cwd);
+	exit(0);
 }
 
