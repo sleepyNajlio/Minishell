@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 13:02:29 by iakry             #+#    #+#             */
-/*   Updated: 2023/02/18 18:13:10 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/18 18:35:24 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void	child_builtin(t_execmd *tree3, t_env **env_list)
 		my_pwd();
 	else if (ch_echo(tree3->av[0]))
 		my_echo(tree3);
-	else if (ft_check_for_env(tree3->av[0]))
-		ft_env(tree3, *env_list);
+	else if (ch_env(tree3->av[0]))
+		my_env_e(tree3, *env_list);
 	else if (child_builtin_export(tree3, env_list))
 		;
 	else if (child_builtin_unset(tree3, env_list))

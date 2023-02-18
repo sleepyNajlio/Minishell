@@ -59,18 +59,18 @@ void	my_cd(t_execmd *exec, t_env *env)
 
 int	ch_pwd(char *s)
 {
-	// if (ft_strlen(s) != 3)
-	// 	return (0);
-	// if (ft_tolower(s[0]) == 'p' && ft_tolower(s[1]) == 'w'
-	// 	&& ft_tolower(s[2]) == 'd')
-	// 	return (1);
-	// return (0);
-	printf("hna\n");
-	if (ft_strcmp(s, "pwd") == 0)
-		return (1);
-	if (ft_strcmp(s, "PWD") == 0)
+	if (ft_strlen(s) != 3)
+		return (0);
+	if (ft_tolower(s[0]) == 'p' && ft_tolower(s[1]) == 'w'
+		&& ft_tolower(s[2]) == 'd')
 		return (1);
 	return (0);
+	// printf("hna\n");
+	// if (ft_strcmp(s, "pwd") == 0)
+	// 	return (1);
+	// if (ft_strcmp(s, "PWD") == 0)
+	// 	return (1);
+	// return (0);
 }
 
 void	my_pwd(void)

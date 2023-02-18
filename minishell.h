@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 11:34:23 by iakry             #+#    #+#             */
-/*   Updated: 2023/02/18 17:52:09 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/18 18:43:17 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,7 @@ void	execution_time(t_defcmd *tree, int *out,int *in, t_env **my_env);
 void	exec_pipe(t_defcmd *tree, int *out, int *in, t_env **my_env);
 void	exec_redir(t_defcmd *tree, int *out, int *in, t_env **my_env);
 void	exec_cmd(t_defcmd *tree, t_env **my_env);
+char	**envpath(t_env *env);
 char	**env_tab(t_env *my_env);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_atoi(const char *str);
@@ -137,6 +138,10 @@ int		ch_cd(t_execmd *tree_e, t_env **my_env);
 void	my_pwd(void);
 int		ch_pwd(char *s);
 void	my_echo(t_execmd *exec);
+int		ch_echo(char *s);
+void	my_env_e(t_execmd *exec, t_env *env);
+int		ch_env(char *s);
+
 
 //char		*ft_strjoin2(char const *s1, char *s2);
 // libft utils
@@ -145,11 +150,9 @@ void	my_echo(t_execmd *exec);
 //minishell utils
 //void		errors(char *name, int flag);
 
-
 int			valid_name(char *s);
 
 // path
-char		**envpath(t_env *env);
 
 
 //int			mini_parent(char *line, t_env **env_list);
@@ -157,14 +160,11 @@ void		child_builtin(t_execmd *tree3, t_env **env_list);
 int			if_exist_add(t_env **env, char **s, int flag);
 //t_env		*init_env(char **env);
 void		ft_exit(t_execmd *cmd);
-int			ch_echo(char *s);
-void		ft_env(t_execmd *cmd, t_env *env_list);
-int			ft_check_for_env(char *s);
 void		ft_export(t_execmd *cmd, t_env **env);
 void		ft_unset(t_execmd *cmd, t_env **env);
 void		export_noargs(t_env **env);
-void		parent_builtin_cd(t_defcmd *tree, t_env **env, int *flag);
-void		parent_builtin_exit(t_defcmd *tree, int *flag);
+//void		parent_builtin_cd(t_defcmd *tree, t_env **env, int *flag);
+//void		parent_builtin_exit(t_defcmd *tree, int *flag);
 void		open_files(t_defcmd *tree, t_env **env_list);
 //void		find_in_redir0(t_defcmd *tree, int *flag);
 //void		check_in_files0(t_defcmd *redir, int *flag);

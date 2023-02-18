@@ -1,6 +1,6 @@
 NAME = minishell
 
-SRC	= export.c unset.c env.c exit.c child_builtin.c \
+SRC	= export.c unset.c exit.c child_builtin.c \
 	utils/utils1.c utils/utils2.c utils/export_utils.c \
 	minishell.c dialna/line_parsing_z.c dialna/constructors_z.c \
 	dialna/env_tools_n.c dialna/exe_parsing_z.c dialna/expansion_help_z.c \
@@ -10,7 +10,8 @@ SRC	= export.c unset.c env.c exit.c child_builtin.c \
 	dialna/parent_tools_n.c dialna/parent_tools1_n.c dialna/parsing_err_z.c \
 	dialna/pipe_parsing_z.c dialna/red_parsing_z.c dialna/str_expansion_z.c \
 	dialna/tokenizer_z.c panic_n.c execution_time_n.c execution_pipe.c \
-	execution_red.c execution_exec.c exec_tools.c cd_pwd.c echo_n.c 
+	execution_red.c execution_exec.c exec_tools.c cd_pwd.c echo_n.c env_n.c \
+	
 
 OBJ	= $(SRC:.c=.o)
 
