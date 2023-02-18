@@ -6,7 +6,7 @@ void	child_builtin(t_execmd *tree_e, t_env **my_env)
 		exit(0);
 	if (!ft_strcmp(tree_e->av[0], "exit"))
 	{
-		ft_exit(tree_e);
+		my_exit(tree_e);
 		exit(exit_stat);
 	}
 	else if (ch_cd(tree_e, my_env))

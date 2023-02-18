@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 13:02:29 by iakry             #+#    #+#             */
-/*   Updated: 2023/02/18 18:35:24 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/18 19:01:16 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	child_builtin(t_execmd *tree3, t_env **env_list)
 		exit(0);
 	if (!ft_strcmp(tree3->av[0], "exit"))
 	{
-		ft_exit(tree3);
+		my_exit(tree3);
 		exit(exit_stat);
 	}
 	else if (ch_cd(tree3, env_list))

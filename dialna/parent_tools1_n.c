@@ -8,7 +8,7 @@ void	exit_parent(t_defcmd *tree, int *done)
 	if (ft_strcmp(cmd->av[0], "exit") == 0)
 	{
 		*done = 1;
-		ft_exit(cmd);
+		my_exit(cmd);
 	}
 }
 

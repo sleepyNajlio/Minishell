@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 11:34:23 by iakry             #+#    #+#             */
-/*   Updated: 2023/02/18 18:43:17 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/18 19:10:21 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ void	my_echo(t_execmd *exec);
 int		ch_echo(char *s);
 void	my_env_e(t_execmd *exec, t_env *env);
 int		ch_env(char *s);
+void	my_exit(t_execmd *exec);
 
 
 //char		*ft_strjoin2(char const *s1, char *s2);
@@ -159,7 +160,6 @@ int			valid_name(char *s);
 void		child_builtin(t_execmd *tree3, t_env **env_list);
 int			if_exist_add(t_env **env, char **s, int flag);
 //t_env		*init_env(char **env);
-void		ft_exit(t_execmd *cmd);
 void		ft_export(t_execmd *cmd, t_env **env);
 void		ft_unset(t_execmd *cmd, t_env **env);
 void		export_noargs(t_env **env);

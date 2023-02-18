@@ -58,3 +58,39 @@ void	my_echo(t_execmd *exec)
 		printf("\n");
 	exit(0);
 }
+
+void	panic_exit(char *s)
+{
+	write(2, "exit: ", 7);
+	write(2, s, ft_strlen(s));
+	write(2, ": numeric argument required\n", 29);
+	exit(255);
+}
+
+void	my_exit(t_execmd *exec)
+{
+	int	j;
+	int	i;
+
+	j = 0;
+	while (exec->av[j])
+		j++;
+	printf("hnaa2 \n");
+	if (exec->av[1])
+	{
+		i = 0;
+		if (exec->av[1][0] == '-')
+			i++;
+		while (exec->av[1][i])
+			if (!ft_isdigit(exec->av[1][i++]))
+				panic_exit(exec->av[1]);
+		if (j > 2)
+		{
+			write(2, "exit: too many arguments\n", 26);
+			exit_stat = 1;
+			return ;
+		}
+		exit(ft_atoi(exec->av[1]));
+	}
+	exit(exit_stat);
+}
