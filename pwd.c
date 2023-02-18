@@ -6,13 +6,13 @@
 /*   By: nloutfi <nloutfi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 04:42:58 by hkhalil           #+#    #+#             */
-/*   Updated: 2023/02/18 04:03:38 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/18 17:22:13 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_check_for_pwd(char *s)
+int	ch_pwd(char *s)
 {
 	if (ft_strlen(s) != 3)
 		return (0);
@@ -24,9 +24,9 @@ int	ft_check_for_pwd(char *s)
 
 void	ft_pwd(void)
 {
-	char	cwd[100];
+	char	cwd[1024];
 
-	if (getcwd(cwd, 100))
+	if (getcwd(cwd, 1024))
 		printf("%s\n", cwd);
 	exit(0);
 }

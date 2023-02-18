@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: nloutfi <nloutfi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 04:06:55 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/10/17 18:31:32 by hkhalil          ###   ########.fr       */
+/*   Updated: 2023/02/18 15:51:11 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_exit(t_execmd *node)
 	k = 0;
 	while (node->av[k])
 		k++;
+	printf("hnaa2 \n");
 	if (node->av[1])
 	{
 		i = 0;

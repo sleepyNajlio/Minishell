@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 13:02:29 by iakry             #+#    #+#             */
-/*   Updated: 2023/02/18 03:05:05 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/18 18:13:10 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	child_builtin_cd(t_execmd *tree3, t_env **env_list)
 {
 	if (!ft_strcmp(tree3->av[0], "cd"))
 	{
-		ft_cd(tree3, *env_list);
+		my_cd(tree3, *env_list);
 		if (errno == 13 || errno == 2)
 			exit(1);
 		exit(0);
@@ -57,12 +57,12 @@ void	child_builtin(t_execmd *tree3, t_env **env_list)
 		ft_exit(tree3);
 		exit(exit_stat);
 	}
-	else if (child_builtin_cd(tree3, env_list))
+	else if (ch_cd(tree3, env_list))
 		;
-	else if (ft_check_for_pwd(tree3->av[0]))
-		ft_pwd();
-	else if (ft_check_for_echo(tree3->av[0]))
-		ft_echo(tree3);
+	else if (ch_pwd(tree3->av[0]))
+		my_pwd();
+	else if (ch_echo(tree3->av[0]))
+		my_echo(tree3);
 	else if (ft_check_for_env(tree3->av[0]))
 		ft_env(tree3, *env_list);
 	else if (child_builtin_export(tree3, env_list))

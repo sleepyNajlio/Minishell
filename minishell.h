@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 11:34:23 by iakry             #+#    #+#             */
-/*   Updated: 2023/02/17 22:32:11 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/18 17:52:09 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,38 +121,43 @@ void	cd_parent(t_defcmd *tree, int *done, t_env **env);
 void	unset_parent(t_defcmd *tree, int *done, t_env **env);
 void	export_parent(t_defcmd *tree, int *done, t_env **env);
 void	master_free(t_defcmd *tree);
+void	panic(char *name, int flag);
+void	execution_time(t_defcmd *tree, int *out,int *in, t_env **my_env);
+void	exec_pipe(t_defcmd *tree, int *out, int *in, t_env **my_env);
+void	exec_redir(t_defcmd *tree, int *out, int *in, t_env **my_env);
+void	exec_cmd(t_defcmd *tree, t_env **my_env);
+char	**env_tab(t_env *my_env);
+int		ft_strcmp(const char *s1, const char *s2);
+int		ft_atoi(const char *str);
+int		ft_tolower(int c);
 
+// builtins
+void	my_cd(t_execmd *cmd, t_env *env);
+int		ch_cd(t_execmd *tree_e, t_env **my_env);
+void	my_pwd(void);
+int		ch_pwd(char *s);
+void	my_echo(t_execmd *exec);
 
-
+//char		*ft_strjoin2(char const *s1, char *s2);
 // libft utils
-char		*ft_strjoin2(char const *s1, char *s2);
-int			ft_strncmp(const char *s1, const char *s2, size_t n);
-int			ft_strcmp(const char *s1, const char *s2);
-int			ft_atoi(const char *nptr);
-int			ft_tolower(int c);
+//int			ft_strncmp(const char *s1, const char *s2, size_t n);
 
 //minishell utils
-void		errors(char *name, int flag);
+//void		errors(char *name, int flag);
 
 
-char		**list_to_table(t_env *env);
 int			valid_name(char *s);
 
 // path
 char		**envpath(t_env *env);
 
-// builtins
 
-int			mini_parent(char *line, t_env **env_list);
+//int			mini_parent(char *line, t_env **env_list);
 void		child_builtin(t_execmd *tree3, t_env **env_list);
 int			if_exist_add(t_env **env, char **s, int flag);
-t_env	*init_env(char **env);
+//t_env		*init_env(char **env);
 void		ft_exit(t_execmd *cmd);
-void		ft_cd(t_execmd *cmd, t_env *env);
-void		ft_pwd(void);
-int			ft_check_for_pwd(char *s);
-void		ft_echo(t_execmd *cmd);
-int			ft_check_for_echo(char *s);
+int			ch_echo(char *s);
 void		ft_env(t_execmd *cmd, t_env *env_list);
 int			ft_check_for_env(char *s);
 void		ft_export(t_execmd *cmd, t_env **env);
@@ -161,19 +166,15 @@ void		export_noargs(t_env **env);
 void		parent_builtin_cd(t_defcmd *tree, t_env **env, int *flag);
 void		parent_builtin_exit(t_defcmd *tree, int *flag);
 void		open_files(t_defcmd *tree, t_env **env_list);
-void		find_in_redir0(t_defcmd *tree, int *flag);
-void		check_in_files0(t_defcmd *redir, int *flag);
+//void		find_in_redir0(t_defcmd *tree, int *flag);
+//void		check_in_files0(t_defcmd *redir, int *flag);
 
 // executor
-void		executor(t_defcmd *tree, int *flag_out,
-				int *flag_in, t_env **env_list);
-void		parsing_tester(t_defcmd *result_tree);
-void		check_in_files(t_defcmd *redir);
-void		find_in_redir(t_defcmd *tree);
-void		ft_pipe(t_defcmd *tree, int *flag_out,
-				int *flag_in, t_env **env_list);
-void		ft_redir(t_defcmd *tree, int *flag_out,
-				int *flag_in, t_env **env_list);
+//void		parsing_tester(t_defcmd *result_tree);
+//void		check_in_files(t_defcmd *redir);
+////void		find_in_redir(t_defcmd *tree);
+//void		ft_pipe(t_defcmd *tree, int *flag_out, int *flag_in, t_env **env_list);
+//void		ft_redir(t_defcmd *tree, int *flag_out, int *flag_in, t_env **env_list);
 
 
 void		ft_execmd(t_defcmd *tree, t_env **env_list);
@@ -187,5 +188,4 @@ void		rl_replace_line(const char *text, int clear_undo);
 void		clean(t_defcmd *tree);
 
 //errors
-void		errors(char *name, int flag);
 #endif

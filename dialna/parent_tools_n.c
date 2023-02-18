@@ -1,5 +1,15 @@
 #include "../minishell.h"
 
+void	panic_1(char *name, int flag)
+{
+	write(2, name, ft_strlen(name));
+	if (flag)
+		write(2, ": Permission denied\n", 21);
+	else
+		write(2, ": No such file or directory\n", 29);
+	exit_stat = 1;
+}
+
 void	files_check(t_defcmd *redir, int *err_flag)
 {
 	t_redcmd	*tmp;
@@ -11,9 +21,9 @@ void	files_check(t_defcmd *redir, int *err_flag)
 	{
 		close(fd);
 		if (access(tmp->file, F_OK) == 0)
-			errors(tmp->file, 10);
+			panic_1(tmp->file, 1);
 		else
-			errors(tmp->file, 11);
+			panic_1(tmp->file, 0);
 		*err_flag = 1;
 	}
 	close(fd);
@@ -41,7 +51,6 @@ void	open_files(t_defcmd *tree, t_env **my_env)
 	fd = open(tree_r->file, tree_r->mode, 0666);
 	if (fd < 0)
 		return ;
-	
 	close(fd);
 	if (tree_r->cmd->type == REDIR)
 		open_files(tree_r->cmd, my_env);

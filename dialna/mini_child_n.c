@@ -36,7 +36,7 @@ void	mini_child(char *line, t_env **env)
 		signal(SIGQUIT, sighandler);
 		tree = line_parsing(env, line);
 		free(line);
-		executor(tree, &out, &in, env);
+		execution_time(tree, &out, &in, env);
 	}
 	signal(SIGINT, SIG_IGN);
 	ch_wait(pid);

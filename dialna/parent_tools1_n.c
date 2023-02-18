@@ -20,7 +20,7 @@ void	cd_parent(t_defcmd *tree, int *done, t_env **env)
 	if (ft_strcmp(cmd->av[0], "cd") == 0)
 	{
 		*done = 1;
-		ft_cd(cmd, *env);
+		my_cd(cmd, *env);
 	}
 }
 
