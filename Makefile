@@ -1,7 +1,7 @@
 NAME = minishell
 
 SRC	= export.c child_builtin.c \
-	utils/utils1.c utils/utils2.c utils/export_utils.c \
+	utils/export_utils.c \
 	minishell.c dialna/line_parsing_z.c dialna/constructors_z.c \
 	dialna/env_tools_n.c dialna/exe_parsing_z.c dialna/expansion_help_z.c \
 	dialna/ft_free_n.c dialna/heredoc_z.c dialna/libft_helper1_z.c \
