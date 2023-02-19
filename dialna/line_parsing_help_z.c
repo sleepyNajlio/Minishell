@@ -10,6 +10,16 @@ char	*ft_strchr(const char *s, int c)
 	return (0);
 }
 
+char	ft_strchar(const char *s, int c)
+{
+    c = (char)c;
+	while (*s != '\0' && c != *s)
+		s++;
+	if (c == *s)
+		return (*s);
+	return (0);
+}
+
 int find(char *to_find, char **line_s, char *line_e)
 {
 	char	*s;

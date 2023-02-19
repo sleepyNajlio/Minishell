@@ -21,11 +21,10 @@ void	c_signal(void)
 char	*read_line(t_env **env)
 {
 	char	*buff;
-
+	(void)env;
 	buff = readline("TheShell-1.0$ ");
 	if (!buff)
 	{
-		env_free(env);
 		write(1, "exit\n", 5);
 		exit (exit_stat);
 	}
@@ -53,6 +52,7 @@ int	main(int ac, char **av, char **env)
 		}
 		mini_child(line, &my_env);
 		free(line);
-  }
+		
+  	}
   return (0);
 }

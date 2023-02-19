@@ -39,7 +39,9 @@ int	empty(char *s)
 	int	i;
 
 	i = 0;
-	while (s[i])
+	if (!ft_strcmp(s, "") && !ft_strlen(s))
+		return (0);
+	while (s && s[i])
 	{
 		if (!is_white_space(s[i]))
 			return (0);

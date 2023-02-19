@@ -1,28 +1,20 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   export.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/15 07:14:38 by hkhalil           #+#    #+#             */
-/*   Updated: 2023/02/18 22:46:21 by nloutfi          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "minishell.h"
 
-int	if_exist_add(t_env **env, char **s, int flag)
+int	if_exist_add(t_env **env, char *s, int flag)
 {
+	char **v = ft_split(s, '=');
 	while (env && *env)
 	{
-		if (!ft_strcmp((*env)->name, s[0]))
+		if (!ft_strcmp((*env)->name, v[0]))
 		{
-			if (flag && s[1])
+			if (flag)
 			{
-				if ((*env)->value)
-					free((*env)->value);
-				(*env)->value = ft_strdup(s[1]);
+				if (v[1])
+					(*env)->value = ft_strdup(v[1]);
+				else
+					(*env)->value = ft_strdup("");
+				(*env)->sep = ft_strchar(s, '=');
 			}
 			return (1);
 		}
@@ -41,13 +33,13 @@ void	global_env(t_env **env, char *s, t_env *addr)
 		free(v[1]);
 		v[1] = ft_strdup("");
 	}
-	if (v && v[0] && if_exist_add(&addr, v, 1))
+	if (v && v[0] && if_exist_add(&addr, s, 1))
 		;
 	else
 	{
 		if (v && v[0] && name_check(v[0]))
 			ft_lst_add_back(env,
-				ft_lstnew(ft_strdup(v[0]), ft_strdup(v[1])));
+				ft_lstnew(ft_strdup(v[0]), ft_strdup(v[1]), ft_strchar(s, '=')));
 		else
 		{
 			exit_stat = -6;
@@ -61,11 +53,13 @@ void	global_env(t_env **env, char *s, t_env *addr)
 
 void	local_env(t_env **env, char *s, t_env	*addr)
 {
-	if (if_exist_add(&addr, &s, 0))
+	if (if_exist_add(&addr, s, 0))
 		;
 	else if (name_check(s))
+	{
 		ft_lst_add_back(env,
-			ft_lstnew(ft_strdup(s), NULL));
+			ft_lstnew(ft_strdup(s), "\0", ft_strchar(s, '=')));
+	}
 	else
 	{
 		exit_stat = -6;
@@ -88,6 +82,7 @@ void	ft_export(t_execmd *cmd, t_env **env)
 			global_env(env, cmd->av[i], addr);
 		else
 			local_env(env, cmd->av[i], addr);
+		
 		i++;
 	}
 }

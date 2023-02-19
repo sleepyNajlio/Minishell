@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-t_env	*ft_lstnew(void *name, void *val)
+t_env	*ft_lstnew(void *name, void *val, char sep)
 {
 	t_env	*env;
 
@@ -9,6 +9,7 @@ t_env	*ft_lstnew(void *name, void *val)
 		return (0);
 	env->name = name;
 	env->value = val;
+	env->sep = sep;
 	env->next = NULL;
 	return (env);
 }
@@ -41,7 +42,7 @@ t_env	*env_init(char **env)
 	while (env[i])
 	{
 		tmp = ft_split(env[i], '=');
-		ft_lst_add_back(&list, ft_lstnew(tmp[0], tmp[1]));
+		ft_lst_add_back(&list, ft_lstnew(tmp[0], tmp[1], ft_strchar(env[i], '=')));
 		free(tmp);
 		i++;
 	}

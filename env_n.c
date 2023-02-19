@@ -25,7 +25,7 @@ void	my_env_e(t_execmd *exec, t_env *env)
 	{
 		while (env)
 		{
-			if (env->value)
+			if (env->value && env->sep == '=')
 				printf("%s=%s\n", env->name, env->value);
 			env = env->next;
 		}

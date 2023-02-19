@@ -28,12 +28,15 @@ void	pwd_update(t_env **env, char *path)
 		}
 		tmp = tmp->next;
 	}
-	ft_lst_add_back(env, ft_lstnew(ft_strdup("PWD"), ft_strdup(path)));
+	ft_lst_add_back(env, ft_lstnew(ft_strdup("PWD"), ft_strdup(path), '='));
 	free(path);
 }
 
 void	my_cd(t_execmd *exec, t_env *env)
 {
+	char *str;
+
+	
 	if (exec->av[1])
 	{
 		if (chdir(exec->av[1]))
@@ -43,9 +46,18 @@ void	my_cd(t_execmd *exec, t_env *env)
 			exit_stat = 1;
 			return ;
 		}
-		pwd_update(&env, getcwd(NULL, 0));
+		str = getcwd(NULL, 0);
+		if (!str)
+		{
+			write(2, "cd: error retrieving current directory:\n", 41);
+			free(str);
+			return ;
+		}
+		else
+			pwd_update(&env, str);
+
 	}
-	if (!(exec->av[1]))
+	else
 	{
 		while (env)
 		{
@@ -65,12 +77,7 @@ int	ch_pwd(char *s)
 		&& ft_tolower(s[2]) == 'd')
 		return (1);
 	return (0);
-	// printf("hna\n");
-	// if (ft_strcmp(s, "pwd") == 0)
-	// 	return (1);
-	// if (ft_strcmp(s, "PWD") == 0)
-	// 	return (1);
-	// return (0);
+	
 }
 
 void	my_pwd(void)
@@ -79,5 +86,7 @@ void	my_pwd(void)
 
 	if (getcwd(cwd, 1024))
 		printf("%s\n", cwd);
+	else
+		perror("");
 	exit(0);
 }

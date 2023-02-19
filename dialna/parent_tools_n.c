@@ -80,8 +80,6 @@ void	p_builtin_exec(t_defcmd *tree, int *done, t_env **env)
 				unset_parent(tree_t, done, env);
 			if (*done == 0)
 				export_parent(tree_t, done, env);
-			// if (*done == 0)
-			// 	pwd_parent(tree_t, done);
 		}
 	}
 }

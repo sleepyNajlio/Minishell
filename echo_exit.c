@@ -75,7 +75,6 @@ void	my_exit(t_execmd *exec)
 	j = 0;
 	while (exec->av[j])
 		j++;
-	printf("hnaa2 \n");
 	if (exec->av[1])
 	{
 		i = 0;
