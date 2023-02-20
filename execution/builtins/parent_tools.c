@@ -1,4 +1,16 @@
-#include "../minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parent_tools.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/20 20:23:23 by nloutfi           #+#    #+#             */
+/*   Updated: 2023/02/20 20:23:27 by nloutfi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../minishell.h"
 
 void	panic_1(char *name, int flag)
 {
@@ -56,7 +68,6 @@ void	open_files(t_defcmd *tree, t_env **my_env)
 		open_files(tree_r->cmd, my_env);
 }
 
-
 void	p_builtin_exec(t_defcmd *tree, int *done, t_env **env)
 {
 	t_defcmd	*tree_t;
@@ -83,3 +94,5 @@ void	p_builtin_exec(t_defcmd *tree, int *done, t_env **env)
 		}
 	}
 }
+
+

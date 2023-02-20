@@ -1,4 +1,16 @@
-#include "minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   unset.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/20 20:24:04 by nloutfi           #+#    #+#             */
+/*   Updated: 2023/02/20 20:24:22 by nloutfi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../minishell.h"
 
 void	last_del(t_env *list, t_env *previous)
 {
@@ -44,7 +56,7 @@ void	check_n_delete(t_env **env, char *str)
 {
 	t_env	*head;
 	t_env	*previous;
-	int			i;
+	int		i;
 
 	i = 0;
 	head = *env;
@@ -85,4 +97,3 @@ void	my_unset(t_execmd *exec, t_env **env)
 		i++;
 	}
 }
-

@@ -1,4 +1,16 @@
-#include "minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   echo_exit.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/20 20:20:34 by nloutfi           #+#    #+#             */
+/*   Updated: 2023/02/20 20:22:15 by nloutfi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../minishell.h"
 
 int	ch_echo(char *s)
 {
@@ -8,11 +20,6 @@ int	ch_echo(char *s)
 		&& ft_tolower(s[2]) == 'h' && ft_tolower(s[3]) == 'o')
 		return (1);
 	return (0);
-	// if (ft_strcmp(s, "echo"))
-	// 	return (1);
-	// if (ft_strcmp(s, "ECHO"))
-	// 	return (1);
-	// return (0);
 }
 
 int	echo_options(char *s)

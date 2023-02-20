@@ -1,33 +1,34 @@
+# CPPFLAGS = -I/goinfre/fstitou/homebrew/opt/readline/include
+# LDFLAGS = -L/goinfre/fstitou/homebrew/opt/readline/lib
+
 NAME = minishell
+CC = cc
 
-SRC	= child_builtin.c \
-	minishell.c dialna/line_parsing_z.c dialna/constructors_z.c \
-	dialna/env_tools_n.c dialna/exe_parsing_z.c dialna/expansion_help_z.c \
-	dialna/ft_free_n.c dialna/heredoc_z.c dialna/libft_helper1_z.c \
-	dialna/libft_helper2_z.c dialna/libft_helper3_n.c dialna/libft_helper4_n.c \
-	dialna/line_parsing_help_z.c dialna/mini_child_n.c dialna/mini_parent_n.c \
-	dialna/parent_tools_n.c dialna/parent_tools1_n.c dialna/parsing_err_z.c \
-	dialna/pipe_parsing_z.c dialna/red_parsing_z.c dialna/str_expansion_z.c \
-	dialna/tokenizer_z.c panic_n.c execution_time_n.c execution_pipe.c \
-	execution_red.c execution_exec.c exec_tools.c cd_pwd.c echo_exit.c env_n.c \
-	unset_exp_tools.c unset_n.c export_n.c
+CFLAGS = -Wall -Wextra -Werror
+#SANITIZE = -g -fsanitize=address
+		
+SRC = minishell.c parsing/constructors_z.c parsing/exe_parsing_z.c parsing/expansion_help_z.c parsing/heredoc_z.c parsing/libft_helper1_z.c \
+	parsing/libft_helper2_z.c parsing/line_parsing_help_z.c parsing/line_parsing_z.c parsing/parsing_err_z.c parsing/pipe_parsing_z.c parsing/red_parsing_z.c \
+	parsing/str_expansion_z.c parsing/tokenizer_z.c execution/exec_tools.c execution/execution_exec.c execution/execution_pipe.c execution/execution_red.c \
+	execution/execution_time.c execution/panic.c execution/builtins/builtins_child.c execution/builtins/builtins_parent.c execution/builtins/cd_pwd.c \
+	execution/builtins/echo_exit.c execution/builtins/env.c execution/builtins/env_tools.c execution/builtins/export.c execution/builtins/ft_free.c \
+	execution/builtins/parent_tools.c execution/builtins/parent_tools1.c execution/builtins/pwd.c execution/builtins/unset.c execution/builtins/unset_exp_tools.c \
+	execution/libft_helper3.c execution/libft_helper4.c execution/mini_child.c 
 
-OBJ	= $(SRC:.c=.o)
+OBJ = $(SRC:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -g #-fsanitize=address
+all : $(NAME)
 
+$(NAME):
+	@$(CC) $(CPPFLAGS) $(SRC) $(CFLAGS) $(LDFLAGS) $(CPPFLAGS) -lreadline  -o $(NAME)
+	@echo "👍👍👍"
 
-$(NAME): $(OBJ)
-	@$(CC)  $(CFLAGS) $(OBJ) -o $(NAME) -lreadline  -L /opt/homebrew/opt/readline/lib -I /opt/homebrew/opt/readline/include
-	@echo "✅"
+clean :
+	@rm -f $(OBJ)
+	@echo "🚮🚮🚮"
 
-all: $(NAME)
+fclean : clean
+	@rm -f $(NAME)
+	@echo "🗑️ 🗑️ 🗑️"
 
-clean:
-	@rm -rf $(OBJ)
-	@echo "🚮"
-				
-fclean:	clean
-	@rm -rf $(NAME)
-
-re:	fclean all
+re : fclean all
