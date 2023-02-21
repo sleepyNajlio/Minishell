@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 11:34:23 by iakry             #+#    #+#             */
-/*   Updated: 2023/02/21 03:45:47 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/21 05:39:53 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void		panic(char *name, int flag);
 void		panic_1(char *name, int flag);
 void		panic_4(char *name);
 void		panic_5(char *name);
-void		execution_time(t_defcmd *tree, int *out,int *in, t_env **my_env);
+void		execution_time(t_defcmd *tree, int *out, int *in, t_env **my_env);
 void		exec_pipe(t_defcmd *tree, int *out, int *in, t_env **my_env);
 void		exec_redir(t_defcmd *tree, int *out, int *in, t_env **my_env);
 void		exec_cmd(t_defcmd *tree, t_env **my_env);

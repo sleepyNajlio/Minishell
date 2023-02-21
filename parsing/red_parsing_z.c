@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 00:14:58 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/21 05:28:36 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/21 05:36:25 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ t_defcmd	*heredoc(t_defcmd *cmd, char *s, int tok)
 	if (g_stat == -69)
 	{
 		hd = open_heredoc(quotation(file_expansion(s)));
-		cmd = construct_red(cmd,hd, O_RDONLY, tok);
+		cmd = construct_red(cmd, hd, O_RDONLY, tok);
 	}
 	else
 	{
@@ -89,22 +89,21 @@ t_defcmd	*red_parsing(t_env **env, t_defcmd *tree_head, char **l_s, char *le)
 	char	*tok_s;
 	char	*tok_e;
 
-
 	token = tokenizer(l_s, le);
 	if (get_tok(l_s, le, &tok_s, &tok_e) != 'c')
 		parsing_err(3);
-
 	if (token == '*')
 	{
 		tree_head = heredoc(tree_head, get_str(tok_s, tok_e), token);
 	}
 	else if (token == '<')
-		tree_head = construct_red(tree_head, quotation(str_expansion(get_str(tok_s, tok_e), *env)), O_RDONLY, token);
+		tree_head = construct_red(tree_head, quotation(str_expansion
+					(get_str(tok_s, tok_e), *env)), O_RDONLY, token);
 	else if (token == '+')
-		tree_head = construct_red(tree_head, quotation(str_expansion(get_str(tok_s, tok_e), *env)),
-				O_WRONLY | O_CREAT | O_APPEND, token);
+		tree_head = construct_red(tree_head, quotation(str_expansion(get_str \
+			(tok_s, tok_e), *env)), O_WRONLY | O_CREAT | O_APPEND, token);
 	else if (token == '>')
-		tree_head = construct_red(tree_head, quotation(str_expansion(get_str(tok_s, tok_e), *env)),
-				O_WRONLY | O_CREAT | O_TRUNC, token);
+		tree_head = construct_red(tree_head, quotation(str_expansion(get_str \
+		(tok_s, tok_e), *env)), O_WRONLY | O_CREAT | O_TRUNC, token);
 	return (tree_head);
 }

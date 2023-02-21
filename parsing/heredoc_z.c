@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   heredoc_z.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/21 05:37:15 by nloutfi           #+#    #+#             */
+/*   Updated: 2023/02/21 05:37:44 by nloutfi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 int	my_fork(void)
@@ -54,7 +66,8 @@ char	*open_heredoc(char *delimiter)
 	id = my_fork();
 	if (id == 0)
 		heredoc_child(delimiter, path);
-	else{
+	else
+	{
 		free(delimiter);
 		signal(SIGQUIT, SIG_IGN);
 		signal(SIGINT, SIG_IGN);

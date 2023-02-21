@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_tools_n.c                                      :+:      :+:    :+:   */
+/*   env_tools.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 20:22:44 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/20 20:22:46 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/21 05:38:41 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ t_env	*env_init(char **env)
 	while (env[i])
 	{
 		tmp = ft_split(env[i], '=');
-		ft_lst_add_back(&list, ft_lstnew(tmp[0], tmp[1], ft_strchar(env[i], '=')));
+		ft_lst_add_back(&list, ft_lstnew(tmp[0], tmp[1], \
+			ft_strchar(env[i], '=')));
 		free(tmp);
 		i++;
 	}

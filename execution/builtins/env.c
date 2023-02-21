@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 20:22:54 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/20 20:22:59 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/21 05:38:55 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ void	panic_env(char *s)
 	exit(127);
 }
 
-
-int ch_env(char *s)
+int	ch_env(char *s)
 {
 	if (ft_strlen(s) != 3)
 		return (0);

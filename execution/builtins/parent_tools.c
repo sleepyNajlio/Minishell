@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 20:23:23 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/21 03:46:01 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/21 05:39:16 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	panic_1(char *name, int flag)
 {
-	//write(2, "dkheelt", 8);
 	write(2, name, ft_strlen(name));
 	if (flag)
 		write(2, ": Permission denied\n", 21);
