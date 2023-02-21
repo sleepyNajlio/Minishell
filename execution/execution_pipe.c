@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 20:24:48 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/20 20:24:52 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/21 00:45:07 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	wait_p(int pid)
 	{
 		if ((WTERMSIG(first) == 3 || WTERMSIG(first) == 2)
 			&& (WTERMSIG(last) != 3 && WTERMSIG(last) != 2))
-		exit_stat = -1;
+		g_stat = -1;
 	}
 	exit(WEXITSTATUS(last));
 }
@@ -36,8 +36,8 @@ void	my_pipe(int p[2])
 void	exec_pipe(t_defcmd *tree, int *out, int *in, t_env **my_env)
 {
 	t_pipecmd	*tree_p;
-	int		pipe[2];
-	int		pid;
+	int			pipe[2];
+	int			pid;
 
 	tree_p = (t_pipecmd *)tree;
 	my_pipe(pipe);

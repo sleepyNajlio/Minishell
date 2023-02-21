@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 20:20:34 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/20 20:22:15 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/21 00:45:07 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,10 @@ void	my_exit(t_execmd *exec)
 		if (j > 2)
 		{
 			write(2, "exit: too many arguments\n", 26);
-			exit_stat = 1;
+			g_stat = 1;
 			return ;
 		}
 		exit(ft_atoi(exec->av[1]));
 	}
-	exit(exit_stat);
+	exit(g_stat);
 }

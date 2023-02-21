@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_child_n.c                                     :+:      :+:    :+:   */
+/*   mini_child.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 19:45:50 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/20 19:46:24 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/21 00:45:07 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void	ch_wait(int pid)
 	int	exit;
 
 	waitpid(pid, &exit, 0);
-	if ((WTERMSIG(exit) == 2 || WTERMSIG(exit) == 3) && exit_stat != -1)
-		exit_stat = WTERMSIG(exit) + 128;
+	if ((WTERMSIG(exit) == 2 || WTERMSIG(exit) == 3) && g_stat != -1)
+		g_stat = WTERMSIG(exit) + 128;
 	else
-		exit_stat = WEXITSTATUS(exit);
+		g_stat = WEXITSTATUS(exit);
 }
 
 void	sighandler(int sig)

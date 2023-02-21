@@ -1,20 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tokenizer_z.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/18 00:00:26 by fel-fil           #+#    #+#             */
+/*   Updated: 2023/02/21 00:17:31 by nloutfi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
-void	check_syntax(char **s, char *es, int c)
+void	check_syntax(char **line_s, char *line_e, int c)
 {
-	while (!ft_strchr(" \n\t\v\f\r<|>", **s) && *s < es)
+	while (!ft_strchr(" \n\t\v\f\r<|>", **line_s) && *line_s < line_e)
 	{
-		if (**s == '\'' || **s == '\"')
+		if (**line_s == '\'' || **line_s == '\"')
 		{
-			c = **s;
-			(*s)++;
-			while (**s != c && *s < es)
-				(*s)++;
-			if (*s == es)
+			c = **line_s;
+			(*line_s)++;
+			while (**line_s != c && *line_s < line_e)
+				(*line_s)++;
+			if (*line_s == line_e)
 				parsing_err(2);
 		}
-		if (*s != es)
-			(*s)++;
+		if (*line_s != line_e)
+			(*line_s)++;
 	}
 }
 

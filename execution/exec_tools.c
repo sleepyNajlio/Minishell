@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 20:24:39 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/20 20:24:40 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/21 00:41:54 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ char	**env_tab(t_env *my_env)
 	while (my_env)
 	{
 		if (my_env->value)
-			ret[i++] = join_free_s1(ft_strjoin(my_env->name, "="), my_env->value);
+			ret[i++] = join_free_s1(ft_strjoin(my_env->name, "="),
+					my_env->value);
 		my_env = my_env->next;
 	}
 	ret[i] = 0;
 	return (ret);
 }
-
 
 int	ft_strcmp(const char *s1, const char *s2)
 {

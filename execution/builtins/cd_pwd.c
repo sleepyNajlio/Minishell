@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 19:25:08 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/20 20:20:31 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/21 00:45:07 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	cd_no_arg(t_env *env)
 			chdir(env->value);
 		env = env->next;
 	}
-	exit_stat = 0;
+	g_stat = 0;
 }
 
 void	my_cd(t_execmd *exec, t_env *env)
@@ -66,7 +66,7 @@ void	my_cd(t_execmd *exec, t_env *env)
 		{
 			write(2, "cd: ", 5);
 			perror(exec->av[1]);
-			exit_stat = 1;
+			g_stat = 1;
 			return ;
 		}
 		str = getcwd(NULL, 0);

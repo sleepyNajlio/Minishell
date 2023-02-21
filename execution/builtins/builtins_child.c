@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 19:24:34 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/20 20:20:13 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/21 00:45:07 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ch_unset(t_execmd *tree_e, t_env **my_env)
 	if (!ft_strcmp(tree_e->av[0], "unset"))
 	{
 		my_unset(tree_e, my_env);
-		if (exit_stat == -6)
+		if (g_stat == -6)
 			exit(1);
 		exit (0);
 	}
@@ -29,7 +29,7 @@ int	ch_export(t_execmd *tree_e, t_env **my_env)
 	if (!ft_strcmp(tree_e->av[0], "export"))
 	{
 		my_export(tree_e, my_env);
-		if (exit_stat == -6)
+		if (g_stat == -6)
 			exit(1);
 		exit(0);
 	}
@@ -43,7 +43,7 @@ void	child_builtin(t_execmd *tree_e, t_env **my_env)
 	if (ft_strcmp(tree_e->av[0], "exit") == 0)
 	{
 		my_exit(tree_e);
-		exit(exit_stat);
+		exit(g_stat);
 	}
 	else if (ch_env(tree_e->av[0]))
 		my_env_e(tree_e, *my_env);

@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 20:25:04 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/20 20:25:09 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/21 00:42:43 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	panic_3(char *name, int flag)
 void	f_check(t_defcmd *redir)
 {
 	t_redcmd	*tmp;
-	int		fd;
+	int			fd;
 
 	tmp = (t_redcmd *)redir;
 	fd = open(tmp->file, tmp->mode);

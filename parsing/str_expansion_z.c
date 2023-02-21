@@ -1,65 +1,61 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   str_expansion_z.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/18 00:00:16 by fel-fil           #+#    #+#             */
+/*   Updated: 2023/02/21 00:45:07 by nloutfi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	exit_exp(char **arg, int *i)
+void	exit_exp(char **str, int *i)
 {
-	char	*number;
-	char	*new_arg;
+	char	*exit_val;
+	char	*after_exp;
 
-	if (exit_stat == 23)
-		exit_stat = 258;
-	number = ft_itoa(exit_stat);
-	new_arg = join_free_s1(join_free_s1(ft_substr(*arg, 0, *i),
-				number), &(*arg)[*i + 2]);
-	free(number);
-	free(*arg);
-	*arg = ft_strdup(new_arg);
-	free(new_arg);
+	if (g_stat == 23)
+		g_stat = 258;
+	exit_val = ft_itoa(g_stat);
+	after_exp = join_free_s1(ft_substr(*str, 0, *i), exit_val);
+	after_exp = join_free_s1(after_exp, &(*str)[*i + 2]);
+	free(*str);
+	*str = ft_strdup(after_exp);
+	free(exit_val);
+	free(after_exp);
 	(*i)++;
 }
 
-void	found_env(char **arg, int *i, t_env *env, char *c)
+void	env_exp(char **str, int *i, t_env *env)
 {
-	char	*v;
-	char	*new_arg;
+	char	*after_exp;
+	char	*env_name;
 
-	v = ft_strdup(my_getenv(c, env));
-	new_arg = join_free_s1(join_free_s1(ft_substr(*arg, 0, *i), v),
-			&(*arg)[*i + ft_strlen(c) + 1]);
-	free(*arg);
-	*arg = ft_strdup(new_arg);
-	free(new_arg);
-	*i = *i + ft_strlen(v);
-	free(v);
-}
-
-void	env_exp(char **arg, int *i, t_env *env)
-{
-	char	*new_arg;
-	char	*c;
-
-	c = ft_env_name(&(*arg)[*i + 1]);
-	if (my_getenv(c, env))
-		found_env(arg, i, env, c);
-	else if (c[0])
+	env_name = get_env_name(&(*str)[*i + 1]);
+	if (my_getenv(env_name, env))
+		found_env(str, i, env, env_name);
+	else if ((*str)[*i + 1] && ((*str)[*i + 1] == '\''
+				|| (*str)[*i + 1] == '\"'))
 	{
-		new_arg = join_free_s1(ft_substr(*arg, 0, *i),
-				&(*arg)[*i + ft_strlen(c) + 1]);
-		free(*arg);
-		*arg = ft_strdup(new_arg);
-		free(new_arg);
+		after_exp = join_free_s1(ft_substr(*str, 0, *i), &(*str)[*i + 1]);
+		free(*str);
+		*str = ft_strdup(after_exp);
+		free(after_exp);
 	}
-	else if ((*arg)[*i + 1] && ((*arg)[*i + 1] == '\''
-				|| (*arg)[*i + 1] == '\"'))
+	else if (env_name[0])
 	{
-		new_arg = join_free_s1(ft_substr(*arg, 0, *i), &(*arg)[*i + 1]);
-		free(*arg);
-		*arg = ft_strdup(new_arg);
-		free(new_arg);
+		after_exp = join_free_s1(ft_substr(*str, 0, *i),
+				&(*str)[*i + ft_strlen(env_name) + 1]);
+		free(*str);
+		*str = ft_strdup(after_exp);
+		free(after_exp);
 	}
 	else
 		(*i)++;
-	free(c);
+	free(env_name);
 }
 
 void	expansion(char **str, int *i, t_env *env)

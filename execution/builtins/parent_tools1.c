@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 20:23:28 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/20 20:23:32 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/21 00:45:07 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void	unset_parent(t_defcmd *tree, int *done, t_env **env)
 	if (ft_strcmp(command->av[0], "unset") == 0)
 	{
 		my_unset(command, env);
-		if (exit_stat == -6)
-			exit_stat = 1;
+		if (g_stat == -6)
+			g_stat = 1;
 		else
-			exit_stat = 0;
+			g_stat = 0;
 		*done = 1;
 	}
 }
@@ -60,10 +60,10 @@ void	export_parent(t_defcmd *tree, int *done, t_env **env)
 	if (ft_strcmp(cmd->av[0], "export") == 0 && cmd->av[1])
 	{
 		my_export(cmd, env);
-		if (exit_stat == -6)
-			exit_stat = 1;
+		if (g_stat == -6)
+			g_stat = 1;
 		else
-			exit_stat = 0;
+			g_stat = 0;
 		*done = 1;
 	}
 }

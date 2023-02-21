@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   line_parsing_z.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/17 23:52:00 by fel-fil           #+#    #+#             */
+/*   Updated: 2023/02/21 00:06:59 by nloutfi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 size_t	ft_strlen(const char *s)
@@ -10,24 +22,18 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char    *end_line(char *line)
+char	*end_line(char *line)
 {
-    char *ret;
+	char	*ret;
 
-    ret = line + ft_strlen(line);
-    return (ret);
+	ret = line + ft_strlen(line);
+	return (ret);
 }
-
 
 t_defcmd	*line_parsing(t_env **env, char *line)
 {
-	t_defcmd	*tree_head;
 	char	*end_s;
 
 	end_s = end_line(line);
-	tree_head = pip_parsing(env, &line, end_s);
-	// find("", &line, end_s);
-	// if (line != end_s)
-	// 	exit(1);
-	return (tree_head);
+	return (pip_parsing(env, &line, end_s));
 }

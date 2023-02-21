@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/21 00:45:12 by nloutfi           #+#    #+#             */
+/*   Updated: 2023/02/21 00:45:44 by nloutfi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int	exit_stat;
+int	g_stat;
 
 void	ctrls(int s)
 {
 	(void)s;
-	exit_stat = 1;
-	//rl_replace_line("", 0);
+	g_stat = 1;
+	rl_replace_line("", 0);
 	rl_on_new_line();
 	write(1, "\n", 1);
 	rl_redisplay();
@@ -21,12 +33,13 @@ void	c_signal(void)
 char	*read_line(t_env **env)
 {
 	char	*buff;
+
 	(void)env;
 	buff = readline("TheShell-1.0$ ");
 	if (!buff)
 	{
 		write(1, "exit\n", 5);
-		exit (exit_stat);
+		exit (g_stat);
 	}
 	return (buff);
 }
@@ -48,11 +61,14 @@ int	main(int ac, char **av, char **env)
 		if (empty(line) == 1 || !mini_parent(line, &my_env))
 		{
 			free(line);
-			continue;
+			continue ;
 		}
 		mini_child(line, &my_env);
-		free(line);
-		
-  	}
-  return (0);
+		if (line)
+		{
+			free(line);
+			line = NULL;
+		}
+	}
+	return (0);
 }

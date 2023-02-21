@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 20:20:21 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/20 20:20:25 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/21 00:45:07 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ int	mini_parent(char *line, t_env **env)
 	pid = my_fork();
 	if (pid == 0)
 	{
-		exit_stat = -69;
+		g_stat = -69;
 		tree = line_parsing(env, line);
 		exit(0);
 	}
 	wait(&ex);
 	if (WEXITSTATUS(ex))
 	{
-		exit_stat = WEXITSTATUS(ex);
+		g_stat = WEXITSTATUS(ex);
 		return (0);
 	}
 	tree = line_parsing(env, line);

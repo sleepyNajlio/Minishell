@@ -54,11 +54,13 @@ char	*open_heredoc(char *delimiter)
 	id = my_fork();
 	if (id == 0)
 		heredoc_child(delimiter, path);
-	free(delimiter);
-	signal(SIGQUIT, SIG_IGN);
-	signal(SIGINT, SIG_IGN);
-	waitpid(id, &exits, 0);
-	if (WEXITSTATUS(exits) == 1)
-		exit(1);
+	else{
+		free(delimiter);
+		signal(SIGQUIT, SIG_IGN);
+		signal(SIGINT, SIG_IGN);
+		waitpid(id, &exits, 0);
+		if (WEXITSTATUS(exits) == 1)
+			exit(1);
+	}
 	return (path);
 }

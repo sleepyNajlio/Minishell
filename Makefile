@@ -1,5 +1,7 @@
-# CPPFLAGS = -I/goinfre/fstitou/homebrew/opt/readline/include
-# LDFLAGS = -L/goinfre/fstitou/homebrew/opt/readline/lib
+CPPFLAGS = -I/Users/nloutfi/.brew/Cellar/readline/8.2.1/include
+LDFLAGS = -L/Users/nloutfi/.brew/Cellar/readline/8.2.1/lib
+
+
 
 NAME = minishell
 CC = cc
@@ -13,7 +15,7 @@ SRC = minishell.c parsing/constructors_z.c parsing/exe_parsing_z.c parsing/expan
 	execution/execution_time.c execution/panic.c execution/builtins/builtins_child.c execution/builtins/builtins_parent.c execution/builtins/cd_pwd.c \
 	execution/builtins/echo_exit.c execution/builtins/env.c execution/builtins/env_tools.c execution/builtins/export.c execution/builtins/ft_free.c \
 	execution/builtins/parent_tools.c execution/builtins/parent_tools1.c execution/builtins/pwd.c execution/builtins/unset.c execution/builtins/unset_exp_tools.c \
-	execution/libft_helper3.c execution/libft_helper4.c execution/mini_child.c 
+	execution/libft_helper3.c execution/libft_helper4.c  -g3 execution/mini_child.c execution/builtins/export_tools.c
 
 OBJ = $(SRC:.c=.o)
 

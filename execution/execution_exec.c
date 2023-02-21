@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 20:24:43 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/20 20:24:47 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/21 00:42:16 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ char	*ft_path(t_execmd *tree_e, t_env **my_env)
 void	exec_cmd(t_defcmd *tree, t_env **my_env)
 {
 	t_execmd	*tree_e;
-	char	*str;
+	char		*str;
 
 	tree_e = (t_execmd *)tree;
 	child_builtin(tree_e, my_env);
@@ -94,6 +94,5 @@ void	exec_cmd(t_defcmd *tree, t_env **my_env)
 	str = ft_path(tree_e, my_env);
 	execve(str, tree_e->av, env_tab(*my_env));
 	free(str);
-	//printf("hna\n");
 	panic(tree_e->av[0], 0);
 }

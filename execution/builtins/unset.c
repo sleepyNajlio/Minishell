@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 20:24:04 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/20 20:24:22 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/21 00:45:07 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	my_unset(t_execmd *exec, t_env **env)
 	{
 		if (!name_check(exec->av[i]))
 		{
-			exit_stat = -6;
+			g_stat = -6;
 			printf("unset: `%s': not a valid identifier\n", exec->av[i]);
 		}
 		else

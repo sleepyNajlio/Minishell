@@ -1,5 +1,16 @@
-#include "../minishell.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipe_parsing_z.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/17 23:56:44 by fel-fil           #+#    #+#             */
+/*   Updated: 2023/02/21 00:08:16 by nloutfi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "../minishell.h"
 
 int	is_white_space(int c)
 {
@@ -9,9 +20,7 @@ int	is_white_space(int c)
 	return (0);
 }
 
-
-
-int	pip_syntax(char *line, int i, int c, int k)
+int	pip_syntax(char *line, int i, int j, int c)
 {
 	while (line[i])
 	{
@@ -20,11 +29,11 @@ int	pip_syntax(char *line, int i, int c, int k)
 			c = line[i];
 			if (c == '|')
 			{
-				if (++k > 1)
+				if (++j > 1)
 					return (0);
 			}
-			else if (k)
-				k--;
+			else if (j)
+				j--;
 		}
 		i++;
 	}
@@ -33,15 +42,12 @@ int	pip_syntax(char *line, int i, int c, int k)
 	return (1);
 }
 
-
 int	empty(char *s)
 {
 	int	i;
 
 	i = 0;
-	if (!ft_strcmp(s, "") && !ft_strlen(s))
-		return (0);
-	while (s && s[i])
+	while (s[i])
 	{
 		if (!is_white_space(s[i]))
 			return (0);
@@ -52,14 +58,13 @@ int	empty(char *s)
 
 int	check_befor_pipe(char *s, t_execmd	*befor_pipe)
 {
-	
 	if (empty(s) == 1)
 		return (1);
 	else if (befor_pipe->av[0] == 0)
 		return (1);
 	else if (pip_syntax(s, 0, 0, 0) == 0)
 		return (1);
-	else 
+	else
 		return (0);
 }
 
