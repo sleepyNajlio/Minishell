@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 20:24:43 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/21 00:42:16 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/21 04:16:19 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,10 @@ void	exec_cmd(t_defcmd *tree, t_env **my_env)
 	char		*str;
 
 	tree_e = (t_execmd *)tree;
+	if (empty(tree_e->av[0]))
+	{
+		panic_4("");
+	}
 	child_builtin(tree_e, my_env);
 	check_directory(tree_e->av[0]);
 	str = ft_path(tree_e, my_env);

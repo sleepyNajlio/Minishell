@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 20:23:11 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/21 00:45:07 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/21 04:59:19 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	without_val(t_env **env, char *s, t_env	*addr)
 	else if (name_check(s))
 	{
 		ft_lst_add_back(env,
-			ft_lstnew(ft_strdup(s), "\0", ft_strchar(s, '=')));
+			ft_lstnew(ft_strdup(s), ft_strdup("\0"), ft_strchar(s, '=')));
 	}
 	else
 	{

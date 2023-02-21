@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 19:25:08 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/21 00:45:07 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/21 04:38:05 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,15 @@ void	pwd_update(t_env **env, char *path)
 
 void	cd_no_arg(t_env *env)
 {
+	char *str;
+
+	str = my_getenv("HOME", env);
+	if (!str)
+	{
+		write(2, "HOME is Not Set\n", 17);
+		g_stat = 1;
+		return ;
+	}
 	while (env)
 	{
 		if (!ft_strcmp(env->name, "HOME"))

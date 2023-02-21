@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 19:27:07 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/20 20:25:28 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/21 03:45:33 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,11 @@ void	panic(char *name, int flag)
 		panic_2(name);
 	if (errno == 2 || errno == 13)
 		panic_4(name);
+}
+
+void	panic_5(char *name)
+{
+	write(2, name, ft_strlen(name));
+	write(2, ": command not found\n", 21);
+	g_stat = 127;
 }

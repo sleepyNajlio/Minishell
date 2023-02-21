@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 11:34:23 by iakry             #+#    #+#             */
-/*   Updated: 2023/02/21 00:52:34 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/21 03:45:47 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ char		*join_free_s2(char const *s1, char const *s2);
 char		*ft_strdup(const char *str);
 void		found_env(char **str, int *i, t_env *env, char *c);
 char		ft_strchar(const char *s, int c);
+int			ft_isspace(int c);
 
 //najlio
 t_env		*ft_lstnew(void *name, void *val, char sep);
@@ -122,6 +123,8 @@ void		p_builtin_exec(t_defcmd *tree, int *done, t_env **env);
 void		exit_parent(t_defcmd *tree, int *done);
 void		panic(char *name, int flag);
 void		panic_1(char *name, int flag);
+void		panic_4(char *name);
+void		panic_5(char *name);
 void		execution_time(t_defcmd *tree, int *out,int *in, t_env **my_env);
 void		exec_pipe(t_defcmd *tree, int *out, int *in, t_env **my_env);
 void		exec_redir(t_defcmd *tree, int *out, int *in, t_env **my_env);

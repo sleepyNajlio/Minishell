@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 00:45:12 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/21 00:45:44 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/21 04:05:21 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,20 @@ void	c_signal(void)
 {
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, ctrls);
+}
+
+int	only_spaces(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str && str[i])
+	{
+		if (str[i] != ' ')
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
 char	*read_line(t_env **env)

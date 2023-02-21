@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 00:14:58 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/21 02:46:09 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/21 04:47:53 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,14 +67,15 @@ char	*get_str(char *tok_s, char *tok_e)
 
 t_defcmd	*heredoc(t_defcmd *cmd, char *s, int tok)
 {
-	char *hd;
+	char	*hd;
 
 	if (g_stat == -69)
 	{
 		hd = open_heredoc(quotation(file_expansion(s)));
-		cmd = construct_red(cmd,hd,O_RDONLY, tok);
+		cmd = construct_red(cmd,hd, O_RDONLY, tok);
 	}
-	else {
+	else
+	{
 		cmd = construct_red(cmd,
 				join_free_s2("/tmp/", quotation(file_expansion(s))),
 				O_RDONLY, '<');
@@ -109,5 +110,6 @@ t_defcmd	*red_parsing(t_env **env, t_defcmd *tree_head, char **l_s, char *le)
 	else if (token == '>')
 		tree_head = construct_red(tree_head, file_name,
 				O_WRONLY | O_CREAT | O_TRUNC, token);
+	//free(file_name);
 	return (tree_head);
 }
