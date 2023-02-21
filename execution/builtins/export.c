@@ -3,12 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nloutfi <nloutfi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 00:31:28 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/21 00:31:49 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/22 00:03:42 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../minishell.h"
+
+void	export_noargs(t_env **env)
+{
+	while ((*env))
+	{
+		if (!(*env)->sep)
+			printf("declare -x %s\n", (*env)->name);
+		else if (!(*env)->value)
+			printf("declare -x %s%c\"\"\n", (*env)->name, (*env)->sep);
+		else
+			printf("declare -x %s%c\"%s\"\n",
+				(*env)->name, (*env)->sep, (*env)->value);
+		(*env) = (*env)->next;
+	}
+	g_stat = 0;
+}
 
 #include "../../minishell.h"
 

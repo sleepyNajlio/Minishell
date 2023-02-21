@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_tools.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: nloutfi <nloutfi@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 20:23:11 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/21 04:59:19 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/22 00:04:31 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,64 +20,103 @@ void	free_v(char **v)
 	v = NULL;
 }
 
-int	exist_check(t_env **env, char *s, int flag)
+int	exist_check(t_env **env, int flag, char *name, char *value)
 {
-	char	**v;
 
-	v = ft_split(s, '=');
+
 	while (env && *env)
 	{
-		if (!ft_strcmp((*env)->name, v[0]))
+		if (!ft_strcmp((*env)->name, name))
 		{
 			if (flag)
 			{
 				if ((*env)->value)
 					free(((*env)->value));
-				if (v[1])
-					(*env)->value = ft_strdup(v[1]);
+				if (value)
+					(*env)->value = ft_strdup(value);
 				else
 					(*env)->value = ft_strdup("");
-				(*env)->sep = ft_strchar(s, '=');
+				(*env)->sep = '=';
 			}
-			free_v(v);
 			return (1);
 		}
 		(*env) = (*env)->next;
 	}
-	free_v(v);
 	return (0);
+}
+
+char *ft_name(char *s)
+{
+	int i;
+	char *name;
+
+	i = 0;
+	while (s && s[i] && s[i] != '=')
+		i++;
+	name = malloc(sizeof(char) * i + 1);
+	i = 0;
+	while (s[i] != '=')
+	{
+		name[i] = s[i];
+		i++;
+	}
+	name[i] = '\0';
+	return (name);
+}
+
+char *ft_value(char *s)
+{
+	int i;
+	int j;
+	char *value;
+
+	i = 0;
+	j = 0;
+	while (s && s[i] && s[i] != '=')
+		i++;
+	value = malloc(sizeof(char) * ft_strlen(s) - i);
+	i++;
+	while (s[i])
+		value[j++] = s[i++];
+	value[j] = '\0';
+	return (value);
 }
 
 void	with_value(t_env **env, char *s, t_env *addr)
 {
-	char	**v;
 
-	v = ft_split(s, '=');
-	if (v && v[0] && !v[1])
+	char *name;
+	char *value;
+
+	name = ft_name(s);
+	value = ft_value(s);
+	
+	if (name && !value)
 	{
-		free(v[1]);
-		v[1] = ft_strdup("");
+		free(value);
+		value = ft_strdup("");
 	}
-	if (v && v[0] && exist_check(&addr, s, 1))
+	if (name && exist_check(&addr, 1, name, value))
 		;
 	else
 	{
-		if (v && v[0] && name_check(v[0]))
+		if ( name && name_check(name))
 			ft_lst_add_back(env,
-				ft_lstnew(ft_strdup(v[0]),
-					ft_strdup(v[1]), ft_strchar(s, '=')));
+				ft_lstnew(ft_strdup(name),
+					ft_strdup(value), ft_strchar(s, '=')));
 		else
 		{
 			g_stat = -6;
 			printf("export: `%s': not a valid identifier\n", s);
 		}
 	}
-	free_v(v);
+	free(name);
+	free(value);
 }
 
 void	without_val(t_env **env, char *s, t_env	*addr)
 {
-	if (exist_check(&addr, s, 0))
+	if (exist_check(&addr, 0, s, NULL))
 		;
 	else if (name_check(s))
 	{
@@ -91,18 +130,4 @@ void	without_val(t_env **env, char *s, t_env	*addr)
 	}
 }
 
-void	export_noargs(t_env **env)
-{
-	while ((*env))
-	{
-		if (!(*env)->sep)
-			printf("declare -x %s\n", (*env)->name);
-		else if (!(*env)->value)
-			printf("declare -x %s%c\"\"\n", (*env)->name, (*env)->sep);
-		else
-			printf("declare -x %s%c\"%s\"\n",
-				(*env)->name, (*env)->sep, (*env)->value);
-		(*env) = (*env)->next;
-	}
-	g_stat = 0;
-}
+
