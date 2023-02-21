@@ -1,0 +1,18 @@
+total 880
+drwxrwxrwx  17 nloutfi  2019     578 Feb 21 02:19 .
+drwx------  10 nloutfi  2019     340 Feb 20 23:51 ..
+-rw-r--r--   1 nloutfi  2019    6148 Feb 18 21:27 .DS_Store
+drwxr-xr-x  14 nloutfi  2019     476 Feb 21 02:18 .git
+drwxr-xr-x   3 nloutfi  2019     102 Feb 20 21:46 .vscode
+-rw-r--r--   1 nloutfi  2019    1522 Feb 21 02:18 Makefile
+d---------   2 nloutfi  2019      68 Feb 21 01:09 avc
+drwxr-xr-x  12 nloutfi  2019     408 Feb 21 02:18 execution
+-rw-r--r--   1 nloutfi  2019       0 Feb 21 02:19 file
+-rw-r--r--   1 nloutfi  2019       0 Feb 21 02:19 file2
+-rwxr-xr-x   1 nloutfi  2019   56020 Feb 21 02:19 minishell
+-rw-r--r--   1 nloutfi  2019    1739 Feb 21 02:18 minishell.c
+drwxr-xr-x   3 nloutfi  2019     102 Feb 21 02:06 minishell.dSYM
+-rw-r--r--   1 nloutfi  2019    5218 Feb 21 00:52 minishell.h
+drwxr-xr-x  15 nloutfi  2019     510 Feb 21 02:18 parsing
+-rw-r--r--   1 nloutfi  2019      59 Feb 21 02:18 script.sh
+-rw-r--r--   1 nloutfi  2019  358098 Feb 21 01:54 typescript
