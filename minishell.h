@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 11:34:23 by iakry             #+#    #+#             */
-/*   Updated: 2023/02/21 05:39:53 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/22 01:22:56 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,5 +157,6 @@ void		my_export(t_execmd *cmd, t_env **env);
 void		export_noargs(t_env **env);
 void		without_val(t_env **env, char *s, t_env	*addr);
 void		with_value(t_env **env, char *s, t_env *addr);
+int			exist_check(t_env **env, int flag, char *name, char *value);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 00:00:16 by fel-fil           #+#    #+#             */
-/*   Updated: 2023/02/21 00:45:07 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/22 00:42:52 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	*str_expansion(char *str, t_env *env)
 			if (is_quote == 0)
 				is_quote = str[i];
 			else if (str[i] == is_quote)
-					is_quote = 0;
+				is_quote = 0;
 		}
 		if (str[i] == '$' && is_quote != '\'')
 			expansion(&str, &i, env);

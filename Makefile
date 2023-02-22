@@ -1,8 +1,8 @@
-# CPPFLAGS = -I/Users/nloutfi/.brew/Cellar/readline/8.2.1/include
-# LDFLAGS = -L/Users/nloutfi/.brew/Cellar/readline/8.2.1/lib
+CPPFLAGS = -I/Users/nloutfi/.brew/Cellar/readline/8.2.1/include
+LDFLAGS = -L/Users/nloutfi/.brew/Cellar/readline/8.2.1/lib
 
-LDFLAGS="-L/opt/homebrew/opt/readline/lib"
-CPPFLAGS="-I/opt/homebrew/opt/readline/include"
+# LDFLAGS="-L/opt/homebrew/opt/readline/lib"
+# CPPFLAGS="-I/opt/homebrew/opt/readline/include"
 
 
 NAME = minishell

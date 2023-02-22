@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nloutfi <nloutfi@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 00:31:28 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/22 00:03:42 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/22 01:22:09 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,21 @@ void	export_noargs(t_env **env)
 	g_stat = 0;
 }
 
-#include "../../minishell.h"
+void	without_val(t_env **env, char *s, t_env	*addr)
+{
+	if (exist_check(&addr, 0, s, NULL))
+		;
+	else if (name_check(s))
+	{
+		ft_lst_add_back(env,
+			ft_lstnew(ft_strdup(s), ft_strdup("\0"), ft_strchar(s, '=')));
+	}
+	else
+	{
+		g_stat = -6;
+		printf("export: `%s': not a valid identifier\n", s);
+	}
+}
 
 void	my_export(t_execmd *cmd, t_env **env)
 {

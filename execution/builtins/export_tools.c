@@ -3,27 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   export_tools.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nloutfi <nloutfi@student.1337.ma>          +#+  +:+       +#+        */
+/*   By: nloutfi <nloutfi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 20:23:11 by nloutfi           #+#    #+#             */
-/*   Updated: 2023/02/22 00:04:31 by nloutfi          ###   ########.fr       */
+/*   Updated: 2023/02/22 01:26:51 by nloutfi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	free_v(char **v)
-{
-	free(v[0]);
-	free(v[1]);
-	free(v);
-	v = NULL;
-}
-
 int	exist_check(t_env **env, int flag, char *name, char *value)
 {
-
-
 	while (env && *env)
 	{
 		if (!ft_strcmp((*env)->name, name))
@@ -45,10 +35,10 @@ int	exist_check(t_env **env, int flag, char *name, char *value)
 	return (0);
 }
 
-char *ft_name(char *s)
+char	*ft_name(char *s)
 {
-	int i;
-	char *name;
+	int		i;
+	char	*name;
 
 	i = 0;
 	while (s && s[i] && s[i] != '=')
@@ -64,11 +54,11 @@ char *ft_name(char *s)
 	return (name);
 }
 
-char *ft_value(char *s)
+char	*ft_value(char *s)
 {
-	int i;
-	int j;
-	char *value;
+	int		i;
+	int		j;
+	char	*value;
 
 	i = 0;
 	j = 0;
@@ -82,25 +72,26 @@ char *ft_value(char *s)
 	return (value);
 }
 
+void	free_val(char *value)
+{
+	free(value);
+	value = ft_strdup("");
+}
+
 void	with_value(t_env **env, char *s, t_env *addr)
 {
-
-	char *name;
-	char *value;
+	char	*name;
+	char	*value;
 
 	name = ft_name(s);
 	value = ft_value(s);
-	
 	if (name && !value)
-	{
-		free(value);
-		value = ft_strdup("");
-	}
+		free_val(value);
 	if (name && exist_check(&addr, 1, name, value))
 		;
 	else
 	{
-		if ( name && name_check(name))
+		if (name && name_check(name))
 			ft_lst_add_back(env,
 				ft_lstnew(ft_strdup(name),
 					ft_strdup(value), ft_strchar(s, '=')));
@@ -113,21 +104,3 @@ void	with_value(t_env **env, char *s, t_env *addr)
 	free(name);
 	free(value);
 }
-
-void	without_val(t_env **env, char *s, t_env	*addr)
-{
-	if (exist_check(&addr, 0, s, NULL))
-		;
-	else if (name_check(s))
-	{
-		ft_lst_add_back(env,
-			ft_lstnew(ft_strdup(s), ft_strdup("\0"), ft_strchar(s, '=')));
-	}
-	else
-	{
-		g_stat = -6;
-		printf("export: `%s': not a valid identifier\n", s);
-	}
-}
-
-
